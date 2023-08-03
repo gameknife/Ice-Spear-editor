@@ -46,7 +46,6 @@
     "sweetalert2": "^7.19.2",
     "texture-lib": "gitlab:ice-spear-tools/texture-lib",
     "three-orbit-controls": "^82.1.0",
-    "uuid": "^3.2.1",
-    "yaz0-lib": "gitlab:ice-spear-tools/yaz0-lib"
+    "uuid": "^3.2.1"
   }
 }

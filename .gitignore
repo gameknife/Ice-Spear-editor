@@ -16,3 +16,5 @@ dist/
 # Intellij project settings
 .idea/
 *.iml
+
+package-lock.json
