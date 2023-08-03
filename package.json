@@ -12,7 +12,7 @@
     "url": "gitlab:ice-spear-tools/ice-spear"
   },
   "ice-spear": {
-    "debug-mode": false,
+    "debug-mode": true,
     "default-app": "launcher",
     "app-icon": "assets/icons/icon_256.png",
     "default-size": [

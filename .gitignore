@@ -18,3 +18,4 @@ dist/
 *.iml
 
 package-lock.json
+exported/
