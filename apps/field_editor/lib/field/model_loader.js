@@ -23,8 +23,37 @@ module.exports = class Field_Model_Loader
      */
     async load(fieldPath, fieldSection, terrain)
     {
-        const lodLevel = 6;
+        // gameknife
+        // 5 may have all 9x9 sections
+        const lodLevel = 5;
         terrain.loadTerrainTscb();
-        return await terrain.loadSectionMesh(fieldSection, lodLevel) || [];
+
+        // gameknife, load all sections
+        // create a buffer that can hold all sections
+
+        // level 5 [ 0 - 19 ] ,[ 0 - 19 ] 256 each
+        // level 6 [ 0 - 38 ] ,[ 0 - 38 ] 256 each
+
+        document.GlobalHeightMap = Buffer.alloc(256 * 256 * 2 * 20 * 20);
+
+
+        //await terrain.loadSectionMesh('J-8', lodLevel);
+
+        let result = await terrain.loadSectionMesh(fieldSection, lodLevel) || [];
+
+        // from A to J
+        // from 1 to 8
+        // 9x9 sections
+        for( let i = 0; i < 9; i++ )
+        {
+            for( let j = 0; j < 9; j++ )
+            {
+                await terrain.loadSectionMesh( String.fromCharCode(65 + j) + '-' + (i + 1), lodLevel);
+            }
+        }
+
+        fs.writeFileSync( `./exported/hightmap_${fieldSection}.r16`, document.GlobalHeightMap, 'binary' );
+
+        return result;
     }
 }
