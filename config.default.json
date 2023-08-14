@@ -22,5 +22,11 @@
             "selectRight": true,
             "selectMiddle": false
         }
+    },
+    "ripper": {
+       "exportTerrain": false,
+       "exportObj": false,
+       "exportTex": false,
+       "exportMubinLevel": false
     }
 }
