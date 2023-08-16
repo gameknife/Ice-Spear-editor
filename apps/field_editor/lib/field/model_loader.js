@@ -45,7 +45,14 @@ module.exports = class Field_Model_Loader
 
         let result = await terrain.loadSectionMesh(fieldSection, lodLevel) || [];
 
-        if( false )
+        let exported = false;
+
+        if( fs.existsSync( `./exported/hightmap_lod${lodLevel}.r16` ) && fs.existsSync( `./exported/weightmap_lod${lodLevel}.tga` ) )
+        {
+            exported = true;
+        }
+
+        if( !exported )
         {
             // from A to J
             // from 1 to 8
@@ -59,7 +66,6 @@ module.exports = class Field_Model_Loader
             }
 
             fs.writeFileSync( `./exported/hightmap_lod${lodLevel}.r16`, document.GlobalHeightMap, 'binary' );
-            
             var buf = TGA.createTgaBuffer(SidePixel, SidePixel, document.GlobalWeightMap);
             fs.writeFileSync(`./exported/weightmap_lod${lodLevel}.tga`, buf);
         }

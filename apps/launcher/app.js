@@ -183,6 +183,13 @@ module.exports = class App extends App_Base {
         this.scanModelTextureDir();
 
         // gameknife
+        const actor_info_path = `./exported/actorInfo.json`;
+        if( fs.existsSync(actor_info_path) )
+        {
+            return;
+        }
+
+
         console.info('customize tasks inject here')
 
         this.stringTable = new String_Table(this.project.getCachePath());
@@ -260,7 +267,7 @@ module.exports = class App extends App_Base {
         actorInfo = Object.keys(actorInfo).sort().reduce((r, k) => (r[k] = actorInfo[k], r), {});
 
         // write actorInfo to file
-        fs.writeFileSync(`./exported/actorInfo.json`, JSON.stringify(actorInfo, null, 4), { flag: "w+" });
+        fs.writeFileSync(actor_info_path, JSON.stringify(actorInfo, null, 4), { flag: "w+" });
 
     }
 
