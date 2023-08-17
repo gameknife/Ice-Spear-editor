@@ -186,6 +186,8 @@ module.exports = class App extends App_Base {
         const actor_info_path = `./exported/actorInfo.json`;
         if( fs.existsSync(actor_info_path) )
         {
+            // save loaded actorInfo to global variable
+            document.actorInfo = JSON.parse(fs.readFileSync(actor_info_path, 'utf8'));
             return;
         }
 
@@ -269,6 +271,7 @@ module.exports = class App extends App_Base {
         // write actorInfo to file
         fs.writeFileSync(actor_info_path, JSON.stringify(actorInfo, null, 4), { flag: "w+" });
 
+        document.actorInfo = actorInfo;
     }
 
 };
